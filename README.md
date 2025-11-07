@@ -25,9 +25,8 @@ Analytic Service (Consumer) → Monitorea todos los eventos
 - **Node.js** - Runtime de JavaScript
 - **Express** - Framework web para el servicio de pago
 - **Apache Kafka** - Sistema de mensajería distribuida
-- **KafkaJS** - Cliente Kafka para Node.js
+- **KafkaJS y Confluent/KafkaJS** - Cliente Kafka para Node.js
 - **Docker & Docker Compose** - Contenedorización
-- **Next.js** - Framework frontend (cliente)
 
 ## Requisitos Previos
 
@@ -53,7 +52,6 @@ docker-compose up -d
 ```
 
 Esto iniciará:
-- **Zookeeper** (puerto 2181)
 - **Kafka** (puerto 9094 para conexiones externas)
 - **Kafka UI** (puerto 8080) - Interfaz web para administrar Kafka
 
@@ -225,7 +223,7 @@ docker-compose down
 
 ## Configuración de Kafka
 
-El archivo `services/kafka/docker-compose.yml` contiene la configuración de Kafka:
+El archivo `docker-compose.yml` contiene la configuración de Kafka:
 
 - **Puerto externo**: 9094 (para conexiones desde el host)
 - **Puerto interno**: 9092 (para comunicación entre contenedores)
