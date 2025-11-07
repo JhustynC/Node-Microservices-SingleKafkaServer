@@ -1,11 +1,13 @@
-import { Kafka } from "kafkajs";
+import { Kafka, Partitioners } from "kafkajs";
 
 const kafka = new Kafka({
   clientId: "order-service",
   brokers: ["localhost:9094"],
 });
 
-const producer = kafka.producer();
+const producer = kafka.producer({
+  createPartitioner: Partitioners.LegacyPartitioner
+});
 const consumer = kafka.consumer({ groupId: "order-service" });
 
 const run = async () => {

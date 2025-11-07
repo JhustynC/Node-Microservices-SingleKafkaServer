@@ -1,41 +1,47 @@
-import { Kafka } from "kafkajs";
+import confluent from '@confluentinc/kafka-javascript';
+const { Kafka } = confluent.KafkaJS;
 
 const kafka = new Kafka({
-  clientId: "email-service",
-  brokers: ["localhost:9094"],
+  kafkaJS: {
+    clientId: 'email-service',
+    brokers: ['localhost:9094'],
+  },
 });
 
 const producer = kafka.producer();
-const consumer = kafka.consumer({ groupId: "email-service" });
+const consumer = kafka.consumer({
+  kafkaJS: {
+    groupId: 'email-group',
+    fromBeginning: true,
+  },
+});
 
 const run = async () => {
   try {
     await producer.connect();
+    console.log('=== Producer connected ===');
+
     await consumer.connect();
-    await consumer.subscribe({
-      topic: "order-successful",
-      fromBeginning: true,
-    });
+    console.log('=== Consumer connected ===');
+
+    await consumer.subscribe({ topic: 'order-successful' });
 
     await consumer.run({
       eachMessage: async ({ topic, partition, message }) => {
         const value = message.value.toString();
         const { userId, orderId } = JSON.parse(value);
 
-        // TODO: Send email to the user
-        const dummyEmailId = "091584203985";
-        console.log(`Email consumer: Email sent to user id ${userId}`);
+        console.log(`📧 Email enviado al usuario ID ${userId} para la orden ${orderId}`);
 
+        const dummyEmailId = '091584203985';
         await producer.send({
-          topic: "email-successful",
-          messages: [
-            { value: JSON.stringify({ userId, emailId: dummyEmailId }) },
-          ],
+          topic: 'email-successful',
+          messages: [{ value: JSON.stringify({ userId, emailId: dummyEmailId }) }],
         });
       },
     });
   } catch (err) {
-    console.log(err);
+    console.error('X Error en el servicio de email:', err);
   }
 };
 

@@ -8,9 +8,10 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
   "type": "module",
+  "license": "ISC",
   "dependencies": {
+    "@confluentinc/kafka-javascript": "^1.6.0",
     "kafkajs": "^2.2.4"
   }
 }

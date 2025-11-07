@@ -1,9 +1,10 @@
-import { Kafka } from "kafkajs";
+import { Kafka, logLevel } from "kafkajs";
 
 const kafka = new Kafka({
   clientId: "analytic-service",
   brokers: ["localhost:9094"],
-});
+  // logLevel: logLevel.INFO
+  });
 
 const consumer = kafka.consumer({ groupId: "analytic-service" });
 
