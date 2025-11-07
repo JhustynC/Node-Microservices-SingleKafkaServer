@@ -40,7 +40,7 @@ Analytic Service (Consumer) → Monitorea todos los eventos
 
 ```bash
 git clone <repository-url>
-cd microservices-single-kafka-server
+cd Node-Microservices-SingleKafkaServer
 ```
 
 ### 2. Configurar Kafka
@@ -48,7 +48,7 @@ cd microservices-single-kafka-server
 Navega al directorio de Kafka y levanta los contenedores:
 
 ```bash
-cd services/kafka
+En la carpeta raiz
 docker-compose up -d
 ```
 
@@ -177,7 +177,6 @@ Content-Type: application/json
 microservices-single-kafka-server/
 ├── services/
 │   ├── kafka/
-│   │   ├── docker-compose.yml    # Configuración de Kafka, Zookeeper y Kafka UI
 │   │   ├── admin.js              # Script para crear topics
 │   │   └── package.json
 │   ├── payment-service/
@@ -193,6 +192,7 @@ microservices-single-kafka-server/
 │   │   ├── index.js              # Consumer que analiza eventos
 │   │   └── package.json
 └── README.md
+└── docker-compose.yml    # Configuración de Kafka, Zookeeper y Kafka UI
 ```
 
 ## Monitoreo
