@@ -108,7 +108,7 @@ cd services/client
 npm install
 ```
 
-## 🎯 Ejecutar los Servicios
+## Ejecutar los Servicios
 
 ### Orden de Inicio Recomendado
 
