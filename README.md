@@ -99,15 +99,6 @@ cd ../analytic-service
 npm install
 ```
 
-### 5. Instalar Dependencias del Cliente (Opcional)
-
-Si quieres ejecutar el frontend:
-
-```bash
-cd services/client
-npm install
-```
-
 ## Ejecutar los Servicios
 
 ### Orden de Inicio Recomendado
